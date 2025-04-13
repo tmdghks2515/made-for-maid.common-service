@@ -1,0 +1,10 @@
+### 코드 생성
+POST http://localhost:8080/api/common-code/create
+Content-Type: application/json
+
+{
+    "code": "NEW_CODE",
+    "displayName": "New Code Name",
+    "description": "Description of the new code",
+    "codeOrder": 0
+}
