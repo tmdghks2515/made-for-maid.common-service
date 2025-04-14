@@ -1,7 +1,7 @@
-package io.made_for_maid.common_service.commonCode.controller;
+package io.madeformaid.common.commonCode.controller;
 
-import io.made_for_maid.common_service.commonCode.dto.data.CommonCodeDTO;
-import io.made_for_maid.common_service.commonCode.service.CommonCodeService;
+import io.madeformaid.common.commonCode.dto.data.CommonCodeDTO;
+import io.madeformaid.common.commonCode.service.CommonCodeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

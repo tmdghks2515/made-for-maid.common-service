@@ -1,4 +1,4 @@
-package io.made_for_maid.common_service.commonCode.repository;
+package io.madeformaid.common.commonCode.repository;
 
 public class CommonCodeCustomRepositoryImpl implements CommonCodeCustomRepository{
 }

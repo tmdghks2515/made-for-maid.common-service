@@ -1,6 +1,6 @@
-package io.made_for_maid.common_service.commonCode.repository;
+package io.madeformaid.common.commonCode.repository;
 
-import io.made_for_maid.common_service.commonCode.entity.CommonCodeEntity;
+import io.madeformaid.common.commonCode.entity.CommonCodeEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 

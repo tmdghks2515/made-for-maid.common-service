@@ -1,4 +1,4 @@
-package io.made_for_maid.common_service;
+package io.madeformaid.common;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

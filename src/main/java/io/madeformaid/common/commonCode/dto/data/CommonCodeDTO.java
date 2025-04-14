@@ -1,4 +1,4 @@
-package io.made_for_maid.common_service.commonCode.dto.data;
+package io.madeformaid.common.commonCode.dto.data;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

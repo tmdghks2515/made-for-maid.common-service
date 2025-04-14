@@ -1,9 +1,9 @@
-package io.made_for_maid.common_service.commonCode.service;
+package io.madeformaid.common.commonCode.service;
 
-import io.made_for_maid.common_service.commonCode.dto.data.CommonCodeDTO;
-import io.made_for_maid.common_service.commonCode.entity.CommonCodeEntity;
-import io.made_for_maid.common_service.commonCode.mapper.CommonCodeMapper;
-import io.made_for_maid.common_service.commonCode.repository.CommonCodeRepository;
+import io.madeformaid.common.commonCode.dto.data.CommonCodeDTO;
+import io.madeformaid.common.commonCode.entity.CommonCodeEntity;
+import io.madeformaid.common.commonCode.mapper.CommonCodeMapper;
+import io.madeformaid.common.commonCode.repository.CommonCodeRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class CommonCodeService {
     private final CommonCodeRepository commonCodeRepository;
+    private final CommonCodeMapper commonCodeMapper;
 
     public CommonCodeDTO createCode(CommonCodeDTO commonCodeDTO) {
         CommonCodeEntity createdCommonCode = CommonCodeEntity.of()
@@ -25,6 +26,6 @@ public class CommonCodeService {
 
         CommonCodeEntity savedCommonCode = commonCodeRepository.save(createdCommonCode);
 
-        return CommonCodeMapper.toDTO(savedCommonCode);
+        return commonCodeMapper.toDTO(savedCommonCode);
     }
 }

@@ -1,6 +1,6 @@
-package io.made_for_maid.common_service.commonCode.entity;
+package io.madeformaid.common.commonCode.entity;
 
-import io.made_for_maid.shared_lib.jpa.BaseEntity;
+import io.madeformaid.shared.jpa.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 

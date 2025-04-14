@@ -1,15 +1,17 @@
-package io.made_for_maid.common_service.commonCode.mapper;
+package io.madeformaid.common.commonCode.mapper;
 
-import io.made_for_maid.common_service.commonCode.dto.data.CommonCodeDTO;
-import io.made_for_maid.common_service.commonCode.entity.CommonCodeEntity;
+import io.madeformaid.common.commonCode.dto.data.CommonCodeDTO;
+import io.madeformaid.common.commonCode.entity.CommonCodeEntity;
+import org.springframework.stereotype.Component;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 public class CommonCodeMapper {
     // CommonCodeEntity -> CommonCodeDTO
-    public static CommonCodeDTO toDTO(CommonCodeEntity commonCodeEntity) {
+    public CommonCodeDTO toDTO(CommonCodeEntity commonCodeEntity) {
         if (commonCodeEntity == null) {
             return null;
         }
@@ -29,7 +31,7 @@ public class CommonCodeMapper {
     }
 
     // CommonCodeDTO -> CommonCodeEntity
-    public static CommonCodeEntity toEntity(CommonCodeDTO commonCodeDTO) {
+    public CommonCodeEntity toEntity(CommonCodeDTO commonCodeDTO) {
         if (commonCodeDTO == null) {
             return null;
         }
@@ -44,13 +46,13 @@ public class CommonCodeMapper {
     }
 
     // List<CommonCodeEntity> -> List<CommonCodeDTO>
-    public static List<CommonCodeDTO> toDTOList(List<CommonCodeEntity> commonCodes) {
+    public List<CommonCodeDTO> toDTOList(List<CommonCodeEntity> commonCodes) {
         if (commonCodes == null || commonCodes.isEmpty()) {
             return Collections.emptyList();
         }
 
         return commonCodes.stream()
-                .map(CommonCodeMapper::toDTO)
+                .map(this::toDTO)
                 .collect(Collectors.toList());
     }
 }

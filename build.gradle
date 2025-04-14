@@ -16,14 +16,15 @@ java {
 
 repositories {
 	mavenCentral()
-	maven {
-		name = "GitHubPackages"
-		url = uri("https://maven.pkg.github.com/tmdghks2515/made-for-maid.shared-lib")
-		credentials {
-			username = project.findProperty("gpr.user")
-			password = project.findProperty("gpr.key")
-		}
-	}
+	mavenLocal()
+//	maven {
+//		name = "GitHubPackages"
+//		url = uri("https://maven.pkg.github.com/tmdghks2515/made-for-maid.shared-lib")
+//		credentials {
+//			username = project.findProperty("gpr.user")
+//			password = project.findProperty("gpr.key")
+//		}
+//	}
 }
 
 ext {
