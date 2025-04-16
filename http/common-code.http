@@ -1,6 +1,7 @@
 ### 코드 생성
-POST http://localhost:8080/api/common-code/create
+POST {{gatewayUrl}}/api/common/code/create
 Content-Type: application/json
+Authorization: Bearer {{accessToken}}
 
 {
     "code": "NEW_CODE",
