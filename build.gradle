@@ -5,7 +5,7 @@ plugins {
 	id 'com.google.protobuf' version '0.9.4'
 }
 
-group = 'io.made-for-maid'
+group = 'io.madeformaid'
 version = '0.0.1-SNAPSHOT'
 
 java {
@@ -17,14 +17,15 @@ java {
 repositories {
 	mavenCentral()
 	mavenLocal()
-//	maven {
-//		name = "GitHubPackages"
-//		url = uri("https://maven.pkg.github.com/tmdghks2515/made-for-maid.shared-lib")
-//		credentials {
-//			username = project.findProperty("gpr.user")
-//			password = project.findProperty("gpr.key")
-//		}
-//	}
+
+	maven {
+		name = "GitHubPackages"
+		url = uri("https://maven.pkg.github.com/tmdghks2515/made-for-maid.shared-lib")
+		credentials {
+			username = project.findProperty("gpr.user")
+			password = project.findProperty("gpr.key")
+		}
+	}
 }
 
 ext {
@@ -32,7 +33,7 @@ ext {
 }
 
 dependencies {
-	implementation 'io.made-for-maid:shared-lib:0.0.1-SNAPSHOT'
+	implementation 'io.madeformaid:shared-lib:0.0.1-SNAPSHOT'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'io.grpc:grpc-services'

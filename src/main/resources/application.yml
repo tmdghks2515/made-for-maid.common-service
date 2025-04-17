@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: made-for-maid.common-service
+    name: common-service
 
   datasource:
     url: jdbc:postgresql://localhost:5433/made-for-maid-local
