@@ -1,4 +1,4 @@
-package io.madeformaid.common.commonCode.entity;
+package io.madeformaid.common.domain.commonCode.entity;
 
 import io.madeformaid.shared.jpa.entity.BaseEntity;
 import jakarta.persistence.*;

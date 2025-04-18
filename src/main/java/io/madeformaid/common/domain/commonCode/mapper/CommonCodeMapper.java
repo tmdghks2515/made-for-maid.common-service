@@ -1,7 +1,7 @@
-package io.madeformaid.common.commonCode.mapper;
+package io.madeformaid.common.domain.commonCode.mapper;
 
-import io.madeformaid.common.commonCode.dto.data.CommonCodeDTO;
-import io.madeformaid.common.commonCode.entity.CommonCodeEntity;
+import io.madeformaid.common.domain.commonCode.dto.data.CommonCodeDTO;
+import io.madeformaid.common.domain.commonCode.entity.CommonCodeEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.Collections;

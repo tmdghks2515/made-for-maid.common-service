@@ -1,9 +1,9 @@
-package io.madeformaid.common.commonCode.service;
+package io.madeformaid.common.domain.commonCode.service;
 
-import io.madeformaid.common.commonCode.dto.data.CommonCodeDTO;
-import io.madeformaid.common.commonCode.entity.CommonCodeEntity;
-import io.madeformaid.common.commonCode.mapper.CommonCodeMapper;
-import io.madeformaid.common.commonCode.repository.CommonCodeRepository;
+import io.madeformaid.common.domain.commonCode.dto.data.CommonCodeDTO;
+import io.madeformaid.common.domain.commonCode.entity.CommonCodeEntity;
+import io.madeformaid.common.domain.commonCode.mapper.CommonCodeMapper;
+import io.madeformaid.common.domain.commonCode.repository.CommonCodeRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

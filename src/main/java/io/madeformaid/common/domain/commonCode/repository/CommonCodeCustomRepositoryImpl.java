@@ -1,4 +1,4 @@
-package io.madeformaid.common.commonCode.repository;
+package io.madeformaid.common.domain.commonCode.repository;
 
 public class CommonCodeCustomRepositoryImpl implements CommonCodeCustomRepository{
 }
