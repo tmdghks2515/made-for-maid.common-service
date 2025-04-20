@@ -19,21 +19,21 @@ public class CommonCodeEntity extends BaseEntity {
     @Column(name = "code", nullable = false, length = 50)
     private String code;
 
-    @Column(name = "display_name", nullable = false, length = 50)
-    private String displayName;
-
     @Column(name = "parent_code")
     private String parentCode;
-
-    @Column(name = "code_order", nullable = false)
-    private Integer codeOrder;
-
-    @Column(name = "description")
-    private String description;
 
     @ManyToOne
     @JoinColumn(name = "parent_code", insertable = false, updatable = false)
     private CommonCodeEntity parentCodeEntity;
+
+    @Column(name = "display_name", nullable = false, length = 50)
+    private String displayName;
+
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "code_order", nullable = false)
+    private Integer codeOrder;
 
     @OneToMany(mappedBy = "parentCode", cascade = CascadeType.ALL, orphanRemoval = true)
     @OrderBy("codeOrder ASC") // 자식 코드 정렬
