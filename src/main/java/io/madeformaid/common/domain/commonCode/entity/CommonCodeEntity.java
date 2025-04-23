@@ -1,6 +1,6 @@
 package io.madeformaid.common.domain.commonCode.entity;
 
-import io.madeformaid.shared.jpa.entity.BaseEntity;
+import io.madeformaid.webmvc.jpa.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
