@@ -4,8 +4,12 @@ Content-Type: application/json
 Authorization: Bearer {{accessToken}}
 
 {
-    "code": "NEW_CODE1234567890",
-    "displayName": "New Code Name",
-    "description": "Description of the new code",
-    "codeOrder": 0
+    "code": "SHOP_CONCEPT_ANIMAL",
+    "displayName": "동물",
+    "parentCode": "SHOP_CONCEPT"
 }
+
+### 코드 트리 조회
+GET {{gatewayUrl}}/api/common/code/tree
+Accept: application/json
+Authorization: Bearer {{accessToken}}

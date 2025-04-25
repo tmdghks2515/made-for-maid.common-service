@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
@@ -22,10 +23,9 @@ public class CommonCodeMapper {
                 commonCodeEntity.getParentCode(),
                 commonCodeEntity.getCodeOrder(),
                 commonCodeEntity.getDescription(),
-                commonCodeEntity.getCreatedBy(),
-                commonCodeEntity.getUpdatedBy(),
-                commonCodeEntity.getCreatedAt(),
-                commonCodeEntity.getUpdatedAt(),
+                commonCodeEntity.getEtc1(),
+                commonCodeEntity.getEtc2(),
+                commonCodeEntity.getEtc3(),
                 toDTOList(commonCodeEntity.getChildCodes())
         );
     }
@@ -40,8 +40,16 @@ public class CommonCodeMapper {
                 .code(commonCodeDTO.getCode())
                 .displayName(commonCodeDTO.getDisplayName())
                 .parentCode(commonCodeDTO.getParentCode())
-                .codeOrder(commonCodeDTO.getCodeOrder())
+                .codeOrder(
+                        Optional.ofNullable(commonCodeDTO.getCodeOrder()).orElse(0)
+                )
                 .description(commonCodeDTO.getDescription())
+                .etc1(commonCodeDTO.getEtc1())
+                .etc2(commonCodeDTO.getEtc2())
+                .etc3(commonCodeDTO.getEtc3())
+                .childCodes(
+                        toEntityList(commonCodeDTO.getChildCodes())
+                )
                 .build();
     }
 
@@ -53,6 +61,17 @@ public class CommonCodeMapper {
 
         return commonCodes.stream()
                 .map(this::toDTO)
+                .collect(Collectors.toList());
+    }
+
+    // List<CommonCodeDTO> -> List<CommonCodeEntity>
+    public List<CommonCodeEntity> toEntityList(List<CommonCodeDTO> commonCodeDTOs) {
+        if (commonCodeDTOs == null || commonCodeDTOs.isEmpty()) {
+            return Collections.emptyList();
+        }
+
+        return commonCodeDTOs.stream()
+                .map(this::toEntity)
                 .collect(Collectors.toList());
     }
 }

@@ -16,7 +16,7 @@ import java.util.List;
 @EqualsAndHashCode(of = "code", callSuper = false) // 엔티티 식별자로 equals/hashCode 정의
 public class CommonCodeEntity extends BaseEntity {
     @Id
-    @Column(name = "code", nullable = false, length = 50)
+    @Column(name = "code", length = 50)
     private String code;
 
     @Column(name = "parent_code")
@@ -32,10 +32,19 @@ public class CommonCodeEntity extends BaseEntity {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "etc1")
+    private String etc1;
+
+    @Column(name = "etc2")
+    private String etc2;
+
+    @Column(name = "etc3")
+    private String etc3;
+
     @Column(name = "code_order", nullable = false)
     private Integer codeOrder;
 
-    @OneToMany(mappedBy = "parentCode", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "parentCode")
     @OrderBy("codeOrder ASC") // 자식 코드 정렬
     private List<CommonCodeEntity> childCodes;
 }

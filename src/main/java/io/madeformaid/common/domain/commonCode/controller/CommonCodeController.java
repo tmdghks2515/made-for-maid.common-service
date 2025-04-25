@@ -4,10 +4,9 @@ import io.madeformaid.common.domain.commonCode.dto.data.CommonCodeDTO;
 import io.madeformaid.common.domain.commonCode.service.CommonCodeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/common/code")
@@ -18,5 +17,10 @@ public class CommonCodeController {
     @PostMapping("/create")
     public ResponseEntity<CommonCodeDTO> createCode(@RequestBody CommonCodeDTO commonCodeDTO) {
         return ResponseEntity.ok(commonCodeService.createCode(commonCodeDTO));
+    }
+
+    @GetMapping("/tree")
+    public ResponseEntity<List<CommonCodeDTO>> getCodeTree() {
+        return ResponseEntity.ok(commonCodeService.getCodeTree());
     }
 }

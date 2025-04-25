@@ -8,6 +8,9 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -20,12 +23,21 @@ public class CommonCodeService {
                 .code(commonCodeDTO.getCode())
                 .displayName(commonCodeDTO.getDisplayName())
                 .parentCode(commonCodeDTO.getParentCode())
-                .codeOrder(commonCodeDTO.getCodeOrder())
+                .codeOrder(
+                        Optional.ofNullable(commonCodeDTO.getCodeOrder())
+                                .orElse(0)
+                )
                 .description(commonCodeDTO.getDescription())
                 .build();
 
         CommonCodeEntity savedCommonCode = commonCodeRepository.save(createdCommonCode);
 
         return commonCodeMapper.toDTO(savedCommonCode);
+    }
+
+    public List<CommonCodeDTO> getCodeTree() {
+        return commonCodeMapper.toDTOList(
+                commonCodeRepository.findAllRootCodesWithChildCodes()
+        );
     }
 }

@@ -3,7 +3,6 @@ package io.madeformaid.common.domain.commonCode.dto.data;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -14,9 +13,8 @@ public class CommonCodeDTO {
     private String parentCode;
     private Integer codeOrder;
     private String description;
-    private String createdBy;
-    private String updatedBy;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+    private String etc1;
+    private String etc2;
+    private String etc3;
     private List<CommonCodeDTO> childCodes;
 }
