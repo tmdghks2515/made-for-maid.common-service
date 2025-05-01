@@ -4,9 +4,10 @@ Content-Type: application/json
 Authorization: Bearer {{accessToken}}
 
 {
-    "code": "SHOP_CONCEPT_ANIMAL",
-    "displayName": "동물",
-    "parentCode": "SHOP_CONCEPT"
+    "code": "STAFF_CONCEPT_BUTLER",
+    "displayName": "집사",
+    "parentCode": "STAFF_CONCEPT",
+    "codeOrder": 1
 }
 
 ### 코드 트리 조회
