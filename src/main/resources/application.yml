@@ -6,7 +6,7 @@ spring:
     name: common-service
 
   datasource:
-    url: jdbc:postgresql://localhost:5433/made-for-maid-local
+    url: jdbc:postgresql://localhost:5432/made-for-maid-local
     username: anan
     password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
