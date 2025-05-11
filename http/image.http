@@ -1,0 +1,4 @@
+### 이미지 업로드
+POST {{gatewayUrl}}/api/common/image/upload
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
