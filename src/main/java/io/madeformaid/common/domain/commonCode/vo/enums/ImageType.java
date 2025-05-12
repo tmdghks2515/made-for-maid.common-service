@@ -4,11 +4,11 @@ import lombok.Getter;
 
 @Getter
 public enum ImageType {
-    PROFILE("/upload/user/profile/"),
-    SHOP_MENU("/upload/shop/menu/"),
+    PROFILE("upload/original/user/profile/"),
+    SHOP_MENU("upload/original/shop/menu/"),
     ;
 
-    private String basePath;
+    private final String basePath;
 
     ImageType(String basePath) {
         this.basePath = basePath;
