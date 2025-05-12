@@ -1,5 +1,7 @@
 package io.madeformaid.common.domain.image.service;
 
+import event.ImageEvent;
+import event.ImageEvent.ImageUsingEvent;
 import io.madeformaid.common.domain.commonCode.vo.enums.ImageStatus;
 import io.madeformaid.common.domain.image.dto.command.UploadImageCommand;
 import io.madeformaid.common.domain.image.dto.data.ImageDTO;
@@ -27,5 +29,23 @@ public class ImageService {
         ImageEntity savedImage = imageRepository.save(uploadedImage);
 
         return ImageMapper.toDTO(savedImage);
+    }
+
+    public void using(ImageUsingEvent event) {
+        ImageEntity image = imageRepository.findById(event.getImageId())
+                .orElseThrow(() -> new IllegalArgumentException("Image not found"));
+        image.using();
+        imageRepository.save(image);
+    }
+
+    @Transactional(noRollbackFor =  Exception.class)
+    public void unusing(ImageEvent.ImageUnusingEvent event) {
+        ImageEntity image = imageRepository.findById(event.getImageId())
+                .orElseThrow(() -> new IllegalArgumentException("Image not found"));
+        image.unused();
+
+        // aws s3 에서 삭제하는 로직 추가 필요
+
+        imageRepository.delete(image);
     }
 }

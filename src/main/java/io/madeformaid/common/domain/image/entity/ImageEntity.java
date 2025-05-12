@@ -34,4 +34,18 @@ public class ImageEntity extends BaseEntity {
 
     @Column(name = "file_name", nullable = false)
     private String fileName;
+
+    public void using() {
+        if (imageStatus != ImageStatus.UPLOADED) {
+            throw new IllegalStateException("사용 처리 불가한 이미지 입니다.");
+        }
+        this.imageStatus = ImageStatus.USING;
+    }
+
+    public void unused() {
+        if (imageStatus != ImageStatus.USING) {
+            throw new IllegalStateException("미사용 처리 불가한 이미지 입니다.");
+        }
+        this.imageStatus = ImageStatus.UNUSED;
+    }
 }

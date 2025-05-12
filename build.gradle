@@ -51,6 +51,7 @@ configurations {
 dependencies {
 	implementation 'io.madeformaid:shared-lib:0.0.1-SNAPSHOT'
 	implementation 'io.madeformaid:webmvc-lib:0.0.1-SNAPSHOT'
+	protoFiles 'io.madeformaid:proto-files:0.0.1-SNAPSHOT'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'io.grpc:grpc-services'
@@ -58,6 +59,7 @@ dependencies {
 	implementation 'org.springframework.kafka:spring-kafka'
 	implementation 'org.springframework.cloud:spring-cloud-starter-config'
 	compileOnly 'org.projectlombok:lombok:1.18.30'
+	compileOnly 'jakarta.annotation:jakarta.annotation-api:1.3.5' // proto 클래스 생성시 @Generated 어노테이션으로 인해 발생하는 오류 해결 해줌
 	annotationProcessor 'org.projectlombok:lombok:1.18.30'
 	runtimeOnly 'org.postgresql:postgresql'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
@@ -72,24 +74,42 @@ dependencyManagement {
 	}
 }
 
+/* grpc proto 설정부 - START */
+// 📦 proto JAR 추출 경로 설정
+def extractedProtoDir = layout.buildDirectory.dir("proto-extracted").get().asFile
+
+// 📥 proto JAR에서 .proto만 추출
+tasks.register('extractProtoFiles', Copy) {
+	from { configurations.protoFiles.collect { zipTree(it) } }
+	include '**/*.proto'
+	into extractedProtoDir
+}
+
+// 📁 sourceSets에 proto 설정 (generateProto 전에 등록돼야 함)
+sourceSets.main.proto.srcDir extractedProtoDir
+
+// 🧩 의존성 연결
+tasks.named('generateProto') { dependsOn 'extractProtoFiles' }
+tasks.named('processResources') { dependsOn 'extractProtoFiles' }
+
+// ⚙️ protobuf stub 생성 설정
 protobuf {
-	protoc {
-		artifact = 'com.google.protobuf:protoc'
-	}
+	protoc { artifact = "com.google.protobuf:protoc:3.25.2" }
 	plugins {
-		grpc {
-			artifact = 'io.grpc:protoc-gen-grpc-java'
-		}
+		grpc { artifact = "io.grpc:protoc-gen-grpc-java:1.62.2" }
 	}
 	generateProtoTasks {
-		all()*.plugins {
-			grpc {
-				option 'jakarta_omit'
-				option '@generated=omit'
-			}
+		all().each { task ->
+			task.builtins { java {} }
+			task.plugins { grpc {} }
 		}
 	}
 }
+/* grpc proto 설정부 - END */
+
+// generateProto 전에 proto 추출
+tasks.named('generateProto') { dependsOn 'extractProtoFiles' }
+tasks.named('processResources') { dependsOn 'extractProtoFiles' }
 
 tasks.named('test') {
 	useJUnitPlatform()
