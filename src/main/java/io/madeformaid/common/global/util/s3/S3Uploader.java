@@ -25,10 +25,7 @@ public class S3Uploader {
 
     public String upload(MultipartFile file, ImageType imageType) throws IOException {
 
-        String fileName = UUID.randomUUID() +
-                "_" +
-                file.getOriginalFilename();
-
+        String fileName = UUID.randomUUID().toString();
         String key = imageType.getBasePath() + fileName;
 
         PutObjectRequest putObjectRequest = PutObjectRequest.builder()
