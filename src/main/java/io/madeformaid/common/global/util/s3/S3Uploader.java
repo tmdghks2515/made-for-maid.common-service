@@ -12,6 +12,7 @@ import software.amazon.awssdk.services.s3.model.ObjectCannedACL;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 
 import java.io.IOException;
+import java.util.Objects;
 import java.util.UUID;
 
 @Service
@@ -25,7 +26,9 @@ public class S3Uploader {
 
     public String upload(MultipartFile file, ImageType imageType) throws IOException {
 
-        String fileName = UUID.randomUUID().toString();
+        String fileName = UUID.randomUUID()
+                + Objects.requireNonNull(file.getOriginalFilename()).substring(file.getOriginalFilename().lastIndexOf("."));
+
         String key = imageType.getBasePath() + fileName;
 
         PutObjectRequest putObjectRequest = PutObjectRequest.builder()

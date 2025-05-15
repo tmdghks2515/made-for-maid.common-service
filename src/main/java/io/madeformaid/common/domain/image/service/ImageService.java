@@ -56,4 +56,16 @@ public class ImageService {
 
         imageRepository.delete(image);
     }
+
+    public void usingAll(ImageEvent.ImageUsingEvents events) {
+        for (ImageUsingEvent imageUsingEvent : events.getEventsList()) {
+            using(imageUsingEvent);
+        }
+    }
+
+    public void unusingAll(ImageEvent.ImageUnusingEvents events) {
+        for (ImageEvent.ImageUnusingEvent imageUnusingEvent : events.getEventsList()) {
+            unusing(imageUnusingEvent);
+        }
+    }
 }
